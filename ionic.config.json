@@ -1,0 +1,7 @@
+{
+  "name": "akhetpe",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
