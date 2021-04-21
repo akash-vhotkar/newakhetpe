@@ -9,6 +9,11 @@
     height: 60px;
 }
 
+.logos{
+    height: 40px;
+    padding: 0 5px;
+}
+
 .container {
     text-align: center;
     position: absolute;
