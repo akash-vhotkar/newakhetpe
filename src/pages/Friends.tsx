@@ -5,7 +5,7 @@ import './Friends.css';
 const Friends: React.FC = () => {
   return (
     <IonPage>
-      <IonHeader>
+      {/* <IonHeader>
         <IonToolbar>
           <IonTitle>Friends</IonTitle>
         </IonToolbar>
@@ -17,7 +17,7 @@ const Friends: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <ExploreContainer name="Friends page" />
-      </IonContent>
+      </IonContent> */}
     </IonPage>
   );
 };

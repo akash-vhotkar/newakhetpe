@@ -1,3 +1,5 @@
+@font-face {font-family: mancha; src: url("../fonts/Mancha\ Bold.otf");}
+
 /* Ionic Variables and Theming. For more info, please see:
 http://ionicframework.com/docs/theming/ */
 
@@ -153,7 +155,7 @@ http://ionicframework.com/docs/theming/ */
    */
 
   .ios body {
-    --ion-background-color: #000000;
+    --ion-background-color: radial-gradient(rgb(25,20,59) 0%, rgb(41,38,113) 65.95%, rgb(33,86,152) 100%);
     --ion-background-color-rgb: 0,0,0;
 
     --ion-text-color: #ffffff;
@@ -180,8 +182,9 @@ http://ionicframework.com/docs/theming/ */
     --ion-color-step-950: #f2f2f2;
 
     --ion-item-background: #000000;
-
+    --ion-tab-bar-background: rgba(211,211,211,0.15);
     --ion-card-background: #1c1c1d;
+    --ion-toolbar-background: none;
   }
 
   .ios ion-modal {
@@ -197,8 +200,7 @@ http://ionicframework.com/docs/theming/ */
    */
 
   .md body {
-    --ion-background-color: radial-gradient(rgb(25, 20, 59) 0%, rgb(41, 38, 113) 65.95%, rgb(33, 86, 152) 100%);
-    --ion-background-color-rgb: 18,18,18;
+    --ion-background-color: radial-gradient(rgb(25,20,59) 0%, rgb(41,38,113) 65.95%, rgb(33,86,152) 100%);
 
     --ion-text-color: #ffffff;
     --ion-text-color-rgb: 255,255,255;
@@ -225,13 +227,29 @@ http://ionicframework.com/docs/theming/ */
     --ion-color-step-900: #e7e7e7;
     --ion-color-step-950: #f3f3f3;
 
-    --ion-item-background: #1e1e1e;
 
-    --ion-toolbar-background: rgb(28, 70, 121);
+    --ion-toolbar-background: none;
 
     --ion-tab-bar-background: rgba(211,211,211,0.15);
-    --ion-tab-bar-color: rgb(229,195,51);
 
     --ion-card-background: #1e1e1e;
   }
+}
+
+.icon-tab-button{
+  background-color: none;
+}
+
+.ion-icon{
+  color: rgb(229,195,51);
+  font-size: 28px;
+}
+
+.ion-icon:hover{
+  color: white;
+  font-weight: bolder;
+}
+
+.icon-tab-bar{
+  border-top: none;
 }

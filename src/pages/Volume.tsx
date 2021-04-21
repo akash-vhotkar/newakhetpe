@@ -5,7 +5,7 @@ import './Volume.css';
 const Volume: React.FC = () => {
   return (
     <IonPage>
-      <IonHeader>
+      {/* <IonHeader>
         <IonToolbar>
           <IonTitle>Volume</IonTitle>
         </IonToolbar>
@@ -17,7 +17,7 @@ const Volume: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <ExploreContainer name="Volume page" />
-      </IonContent>
+      </IonContent> */}
     </IonPage>
   );
 };

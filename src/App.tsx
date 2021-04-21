@@ -15,6 +15,7 @@ import Setting from './pages/Setting';
 import Friends from './pages/Friends';
 import Wallet from './pages/Wallet';
 import Volume from './pages/Volume';
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -59,21 +60,21 @@ const App: React.FC = () => (
             <Redirect to="/home" />
           </Route>
         </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="setting" href="/setting">
-            <IonIcon icon={settingsOutline} />
+        <IonTabBar className="icon-tab-bar" slot="bottom">
+          <IonTabButton className="icon-tab-button" tab="setting" href="/setting">
+            <IonIcon className="ion-icon" icon={settingsOutline} />
           </IonTabButton>
-          <IonTabButton tab="friends" href="/friends">
-            <IonIcon icon={peopleOutline} />
+          <IonTabButton className="icon-tab-button"  tab="friends" href="/friends">
+            <IonIcon className="ion-icon" icon={peopleOutline} />
           </IonTabButton>
-          <IonTabButton tab="home" href="/home">
-            <IonIcon icon={homeOutline} />
+          <IonTabButton className="icon-tab-button" tab="home" href="/home">
+            <IonIcon className="ion-icon" icon={homeOutline} />
           </IonTabButton>
-          <IonTabButton tab="wallet" href="/wallet">
-            <IonIcon icon={walletOutline} />
+          <IonTabButton className="icon-tab-button" tab="wallet" href="/wallet">
+            <IonIcon className="ion-icon" icon={walletOutline} />
           </IonTabButton>
-          <IonTabButton tab="volume" href="/volume">
-            <IonIcon icon={headsetOutline} />
+          <IonTabButton className="icon-tab-button" tab="volume" href="/volume">
+            <IonIcon className="ion-icon" icon={headsetOutline} />
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

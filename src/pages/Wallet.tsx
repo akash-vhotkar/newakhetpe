@@ -5,7 +5,7 @@ import './Wallet.css';
 const Wallet: React.FC = () => {
   return (
     <IonPage>
-      <IonHeader>
+      {/* <IonHeader>
         <IonToolbar>
           <IonTitle>Wallet</IonTitle>
         </IonToolbar>
@@ -17,7 +17,7 @@ const Wallet: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <ExploreContainer name="Wallet page" />
-      </IonContent>
+      </IonContent> */}
     </IonPage>
   );
 };

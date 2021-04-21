@@ -5,7 +5,7 @@ import './Setting.css';
 const Setting: React.FC = () => {
   return (
     <IonPage>
-      <IonHeader>
+      {/* <IonHeader>
         <IonToolbar>
           <IonTitle>Setting</IonTitle>
         </IonToolbar>
@@ -17,7 +17,7 @@ const Setting: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <ExploreContainer name="Setting page" />
-      </IonContent>
+      </IonContent> */}
     </IonPage>
   );
 };
