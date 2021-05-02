@@ -1,25 +1,3 @@
-@font-face {font-family: mancha; src: url("../fonts/Mancha\ Bold.otf");}
-
-.ion-toolbar{
-    border: none;
-    outline: none;
-}
-
-.logo{
-    height: 60px;
-}
-
-.logos{
-    height: 40px;
-    padding: 0 5px;
-}
-
-.player-select{
-    margin-top: 5px;
-    margin-left: 7px;
-    height: 22px;
-}
-
 .container {
     text-align: center;
     position: absolute;

@@ -1,0 +1,217 @@
+  .ion-toolbar {
+    border: none;
+    outline: none;
+    margin-top: 15px;
+  }
+  
+  .logo {
+    height: 60px;
+  }
+  
+  .logos {
+    height: 30px;
+    padding: 0 5px;
+  }
+  
+  .player-select {
+    margin-top: 5px;
+    margin-left: 7px;
+    height: 18px;
+  }
+  
+  .container {
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .play-btn {
+    height: 200px;
+  }
+  
+  .grid {
+    display: grid;
+    gap: 1rem;
+    grid-auto-flow: column;
+    margin: 0 0 1rem 0;
+    background-color: whitesmoke;
+    height: 33px;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-top: 100px;
+    border-radius: 3%;
+    position: fix;
+  }
+  
+  .grid > div {
+    margin-top: 6.5px;
+    height: 20px;
+    width: 20px;
+    background: red;
+    min-width: 10px;
+  }
+  
+  #div1 {
+    background-color: turquoise;
+  }
+  
+  #div2 {
+    background-color: rgb(231, 170, 231);
+  }
+  #div3 {
+    background-color: rgb(150, 157, 221);
+  }
+  #div4 {
+    background-color: rgb(132, 216, 208);
+  }
+  #div5 {
+    background-color: rgb(237, 183, 241);
+  }
+  #div6 {
+    background-color: rgb(81, 178, 243);
+  }
+  #div7 {
+    background-color: rgb(241, 205, 105);
+  }
+  #div8 {
+    background-color: rgb(241, 205, 105);
+  }
+  #div9 {
+    background-color: rgb(241, 205, 105);
+  }
+  #div10 {
+    background-color: rgb(241, 205, 105);
+  }
+  #div11 {
+    background-color: rgb(241, 205, 105);
+  }
+  #content {
+    margin-right: 40px;
+  }
+  
+  li {
+    width: 2em;
+    height: 2em;
+    text-align: center;
+    line-height: 2em;
+    border-radius: 1em;
+    background: dodgerblue;
+    margin: 0 1em;
+    display: inline-block;
+    color: white;
+    position: relative;
+    border-style: solid;
+    border-width: 3px;
+    border-color: azure;
+    font-weight: 600
+  }
+  .odd{
+    background: aliceblue;
+    color: black;
+    
+  }
+  /*   
+    li::before{
+      content: '';
+      position: absolute;
+      top: .9em;
+      left: -4em;
+      width: 4em;
+      height: .2em;
+      background: dodgerblue;
+      z-index: -1;
+    }
+    
+    
+    li:first-child::before {
+      display: none;
+    }
+    
+    .active {
+      background: dodgerblue;
+    }
+    
+    .active ~ li {
+      background: lightblue;
+    }
+    
+    .active ~ li::before {
+      background: lightblue;
+    } */
+  #infot {
+    background-color: rgb(235, 235, 97);
+    width: 150px;
+    margin: auto;
+    margin-top: 30px;
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
+    margin-bottom: 15px;
+  }
+  #infot {
+    display: flex;
+    flex-direction: row;
+  }
+  #infotdiv1 {
+    width: 50%;
+    color: black;
+  }
+  #infotdiv2 {
+    width: 50%;
+    margin-left: 20px;
+    color: black;
+  }
+  
+  #secondlastt {
+    background-color: rgb(54, 116, 230);
+    margin: auto;
+    margin-top: 10px;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    border-radius: 50%;
+  }
+  #secondlastt h1 {
+    margin-top: 10px;
+    padding-top: 14px;
+  }
+  
+  #lastt {
+    background-color: rgb(235, 235, 97);
+    width: 150px;
+    margin: auto;
+    margin-top: 10px;
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
+  }
+  #lastt {
+    display: flex;
+    flex-direction: row;
+  }
+  #lasttdiv1 {
+    width: 50%;
+    color: black;
+  }
+  #lasttdiv2 {
+    width: 50%;
+    margin-left: 20px;
+    color: black;
+  }
+  #align{
+    margin-left: 310px;
+    display: flex;
+    flex-direction: row;
+  }
+  #downalign1{
+    margin: 10px;
+  }
+  #downalign2{
+    margin: 10px;
+  }
+  #downalign3{
+    margin: 10px;
+  }

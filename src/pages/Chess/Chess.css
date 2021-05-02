@@ -1,0 +1,13 @@
+.box{
+    width:25px;
+    height:25px;
+    border:1px solid black;
+    display: inline-block;
+    margin: -2px;
+    font-size: 15px;
+    text-align: center;
+}
+.black{
+    background-color: black;
+    color: white;
+}

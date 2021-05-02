@@ -1,0 +1,92 @@
+#header{
+    text-align:center;
+    vertical-align:middle;
+    margin-top: 25px;
+}
+#header h1{
+    padding: 0%;
+    margin: 0%;
+    color: white;
+    font-size: 20px;
+}
+#settingslogo{
+    float: right;
+    margin-top: -25px;
+    color: white;
+    margin-right: 25px;
+}
+#footer{
+    background-color: yellow;
+}
+.container hr{
+    background-color: white;
+    padding-right:240px;
+    opacity: 30%;
+    margin-top: -5px;
+}
+.container{
+    margin-top: -30px;
+}
+#form{
+    margin-top: 15px;
+    margin-left: -20px;
+    padding: 0%;
+    opacity: 40px;  
+    color: white;
+}
+#alarm{
+    margin-left: 20px;
+    color: white;
+    padding:0%;
+}
+#firstdivsub{
+    display: flex;
+    flex-direction: row 
+}
+#firstdivsub2{
+    padding: 0%;
+    margin-left: -20px;
+}
+#firstdivsub h2{
+    color:white;
+    opacity: 60px;
+    font-size: 15px;
+    margin-top: 0px;
+    margin-left: 10px;
+    font-weight: 10;
+}
+#firstdiv{
+    margin-top: 80px;
+    display: flex;
+    flex-direction: row;
+}
+#seconddiv{
+    display: block;
+    padding: 0%;
+    position:fix;
+}
+#seconddivsub{
+    display: flex;
+    flex-direction: row;
+    padding: 0%;
+}
+#seconddivsub h2{
+    color:white;
+    opacity: 60px;
+    font-size: 15px;
+    margin-top: 0px;
+    margin-left: 10px;
+    font-weight: 10;
+}
+#volume{
+    margin-left: 20px;
+    color: white;
+    padding:0%;
+}
+#seconddivsub2{
+    margin-top: -5px;
+    margin-left: 60px;
+    width: 100px;
+    margin-bottom: px;
+    padding-bottom: 10px;
+}

@@ -15,6 +15,11 @@ import Setting from './pages/Setting';
 import Friends from './pages/Friends';
 import Wallet from './pages/Wallet';
 import Volume from './pages/Volume';
+import Slider from "./pages/Slider";
+import Chess from "./pages/Chess/Chess";
+import Bingo from "./pages/Bingo/Bingo";
+import Tambola from "./pages/Tambola/Tambola";
+import TickTock from "./pages/Tick-Tock/TickTock";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 /* Core CSS required for Ionic components to work properly */
@@ -41,24 +46,17 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route exact path="/home">
-            <Home />
-          </Route>
-          <Route exact path="/setting">
-            <Setting />
-          </Route>
-          <Route exact path="/friends">
-            <Friends />
-          </Route>
-          <Route exact path="/wallet">
-            <Wallet />
-          </Route>
-          <Route exact path="/volume">
-            <Volume />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
+          <Route exact path="/home"><Home /></Route>
+          <Route exact path="/setting"><Setting /></Route>
+          <Route exact path="/friends"><Friends /></Route>
+          <Route exact path="/wallet"><Wallet /></Route>
+          <Route exact path="/volume"><Volume /></Route>
+          <Route exact path="/slider"><Slider /></Route>
+          <Route exact path="/bingo"><Bingo /></Route>
+          <Route exact path="/tambola"><Tambola /></Route>
+          <Route exact path="/ticktock"><TickTock /></Route>
+          <Route exact path="/chess"><Chess /></Route>
+          <Route exact path="/"><Redirect to="/home" /></Route>
         </IonRouterOutlet>
         <IonTabBar className="icon-tab-bar" slot="bottom">
           <IonTabButton className="icon-tab-button" tab="setting" href="/setting">

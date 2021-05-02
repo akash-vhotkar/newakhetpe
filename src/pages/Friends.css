@@ -1,0 +1,62 @@
+#second {
+    margin-top: 30px;
+    text-align: center;
+    vertical-align: middle;
+  }
+  #second h2 {
+    font-size: 18px;
+    padding: 0%;
+    margin: 0%;
+    color: white;
+    font-size: 20px;
+    margin-right: 50px;
+  }
+  #discord {
+    float: right;
+    margin-top: -25px;
+    color: white;
+    margin-right: 0px;
+    width: auto;
+    height: 25px;
+    padding-right: 10px;
+  }
+  #facebook {
+    float: right;
+    margin-top: -25px;
+    color: white;
+    margin-right: 0px;
+    width: auto;
+    height: 25px;
+    padding-right: 40px;
+  }
+  #second {
+    margin-top: 30px;
+  }
+  #search {
+    color: whitesmoke;
+  }
+  #back {
+    float: left;
+    color: whitesmoke;
+    height: 20px;
+    width: auto;
+    margin-left: 30px;
+    padding: 0%;
+  }
+  #seconddiv {
+    margin-top: -150px;
+    display: flex;
+    flex-direction: row;
+    margin-left: 35px;
+  }
+  #input {
+    margin-left: -45px;
+    width: 150px;
+    height: 20px;
+    background-color: rgb(33, 33, 85);
+    text-align: center;
+  }
+  #hr {
+    background-color: white;
+    color: white;
+  }

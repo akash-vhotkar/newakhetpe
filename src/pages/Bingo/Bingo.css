@@ -1,0 +1,372 @@
+  .ion-toolbar {
+    border: none;
+    outline: none;
+    margin-top: 15px;
+  }
+  
+  .logo {
+    height: 60px;
+  }
+  
+  .logos {
+    height: 30px;
+    padding: 0 5px;
+  }
+  
+  .player-select {
+    margin-top: 5px;
+    margin-left: 7px;
+    height: 18px;
+  }
+  
+  .container {
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .play-btn {
+    height: 200px;
+  }
+  .grid {
+    display: grid;
+    gap: 1rem;
+    grid-auto-flow: column;
+    margin: 0 0 1rem 0;
+    background-color: whitesmoke;
+    height: 33px;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-top: 100px;
+    border-radius: 3%;
+    position: fix;
+  }
+  
+  .grid > div {
+    margin-top: 6.5px;
+    height: 20px;
+    width: 20px;
+    background: red;
+    min-width: 10px;
+  }
+  #div1 {
+    background-color: turquoise;
+  }
+  #div2 {
+    background-color: rgb(231, 170, 231);
+  }
+  #div3 {
+    background-color: rgb(150, 157, 221);
+  }
+  #div4 {
+    background-color: rgb(132, 216, 208);
+  }
+  #div5 {
+    background-color: rgb(237, 183, 241);
+  }
+  #div6 {
+    background-color: rgb(81, 178, 243);
+  }
+  #div7 {
+    background-color: rgb(241, 205, 105);
+  }
+  #info {
+    background-color: rgb(235, 235, 97);
+    width: 150px;
+    margin: auto;
+    margin-top: 30px;
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
+  }
+  #info {
+    display: flex;
+    flex-direction: row;
+  }
+  #infodiv1 {
+    width: 50%;
+    color: black;
+  }
+  #infodiv2 {
+    width: 50%;
+    margin-left: 20px;
+    color: black;
+  }
+  
+  .box1 {
+    background-color: #444;
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box2 {
+    background-color: rgb(118, 240, 101);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box3 {
+    background-color: rgb(240, 69, 69);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box4 {
+    background-color: rgb(41, 44, 241);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box5 {
+    background-color: rgb(250, 160, 42);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box6 {
+    background-color: rgb(249, 62, 255);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box7 {
+    background-color: rgb(202, 106, 231);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box8 {
+    background-color: rgb(211, 241, 76);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box9 {
+    background-color: rgb(243, 45, 45);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box10 {
+    background-color: rgb(53, 65, 235);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box11 {
+    background-color: rgb(33, 241, 137);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box12 {
+    background-color: rgb(149, 240, 46);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box13 {
+    background-color: rgb(218, 41, 241);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box14 {
+    background-color: rgb(220, 233, 37);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box15 {
+    background-color: rgb(233, 51, 151);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box16 {
+    background-color: rgb(235, 221, 26);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box17 {
+    background-color: rgb(154, 245, 69);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box18 {
+    background-color: rgb(208, 18, 214);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box19 {
+    background-color: rgb(243, 28, 28);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box20 {
+    background-color: rgb(6, 255, 243);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box21 {
+    background-color: rgb(228, 122, 231);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box22 {
+    background-color: rgb(0, 255, 98);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box23 {
+    background-color: rgb(255, 0, 0);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box24 {
+    background-color: rgb(231, 150, 252);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  .box25 {
+    background-color: rgb(238, 71, 71);
+    color: #fff;
+    padding: 2px;
+    font-size: 100%;
+    height: 33px;
+    width: 39px;
+    margin: 1px;
+  }
+  
+  .box:nth-child(even) {
+    background-color: #ccc;
+    color: #000;
+  }
+  
+  .wrapper {
+    margin-top: 7px;
+    width: 250px;
+    display: grid;
+    grid-gap: 6px;
+    grid-template-columns: repeat(37px 37px 37px 37px 37px);
+    grid-template-rows: 37px 37px 37px 37px 37px;
+    grid-auto-flow: column;
+    margin-right: 10px;
+    border-style: solid;
+    border-color: white;
+    border-width: 4px;
+  }
+  #secondlast {
+    background-color: rgb(54, 116, 230);
+    margin: auto;
+    margin-top: 10px;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+  }
+  #last {
+    background-color: rgb(235, 235, 97);
+    width: 150px;
+    margin: auto;
+    margin-top: 10px;
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
+  }
+  #last {
+    display: flex;
+    flex-direction: row;
+  }
+  #lastdiv1 {
+    width: 50%;
+    color: black;
+  }
+  #lastdiv2 {
+    width: 50%;
+    margin-left: 20px;
+    color: black;
+  }

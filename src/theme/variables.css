@@ -241,12 +241,12 @@ http://ionicframework.com/docs/theming/ */
 }
 
 .ion-icon{
-  color: rgb(228, 91, 0);
+  color: rgb(229, 195, 51);
   font-size: 28px;
 }
 
 .ion-icon:hover{
-  color: white;gti
+  color: white;
   font-weight: bolder;
 }
 
