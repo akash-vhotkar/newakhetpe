@@ -1,0 +1,24 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "generate-password": "^1.6.0",
+    "mongoose": "^5.12.7",
+    "nodemon": "^2.0.7",
+    "password-generator": "^2.3.2",
+    "random-array-generator": "^1.0.7",
+    "socket.io": "^4.0.1",
+    "tambola": "^3.0.3",
+    "tambola-generator": "0.0.1"
+  }
+}
