@@ -14,7 +14,7 @@ module.exports = mongoose.model("tambolauser",{
 
     },
     ticket: {
-        type:String,
+        type:Array,
         required: true
     },
     balanceticket: {

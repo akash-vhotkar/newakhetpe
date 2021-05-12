@@ -22,10 +22,11 @@ const TambolaHome = () => {
         console.log("connected to server");
     })
     socket.on("tambolajoinroom", (obj) => {
-        console.log(obj);
+        history.push(`/tambola/${obj.data.roomid}`);
     })
     
     socket.on("tambolacreateroom", (obj) => {
+        
         history.push(`/tambola/${obj.data.roomid}`);
 
     })
@@ -40,7 +41,7 @@ const TambolaHome = () => {
     }
     function joinroom(e) {
         e.preventDefault() 
-        socket.emit("tambolajoinroom",{roomid,name});
+        socket.emit("tambolajoinroom",{name, roomid});
     }
     function playonline() {
         socket.emit("tambolaplayonline")
@@ -49,10 +50,10 @@ const TambolaHome = () => {
 
     return (
             <div className="Tambola">   
-                <div class="container text-white">
+                <div class="container ">
                     <div class="row">
                         <div className="col-md-4">
-                            <h1 class="text-center">Online Tambola game </h1>
+                            <h1 class="text-center text-dark">Online Tambola game </h1>
                             <h1>the username of the page</h1>
                             <input type="text" value={name}  onChange={(e)=> setname(e.target.value)}/>
                             <form onSubmit={joinroom}>

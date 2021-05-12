@@ -25,10 +25,13 @@
 // export default Room;
 
 
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
+import { useParams } from 'react-router';
+import { socket } from './socketconfig';
 import "./TambolaRoom.css";
 
 class Room extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -37,9 +40,11 @@ class Room extends Component {
     };
 
     this.onClick = this.onClick.bind(this);
+  
     // setInterval(this.onClick,3000);
+    
   }
-
+  
   render() {
     return (
       <div className="App">
