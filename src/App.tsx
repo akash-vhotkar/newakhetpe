@@ -56,7 +56,7 @@ const App: React.FC = () => (
           <Route exact path="/bingo"><Bingo /></Route>
           <Route exact path="/tambola"><Tambola /></Route>
          
-          <Route exact path="/tambola/:roomid"><Tambolaroom></Tambolaroom></Route>
+          <Route exact path="/tambola/:roomid/:name"><Tambolaroom></Tambolaroom></Route>
           <Route exact path="/ticktock"><TickTock /></Route>
           <Route exact path="/chess"><Chess /></Route>
           <Route exact path="/"><Redirect to="/home" /></Route>

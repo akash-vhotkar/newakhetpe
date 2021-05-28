@@ -6,7 +6,7 @@ const cors = require('cors');
 const app = express();
 const tambola = require('tambola-generator');
 
-mongoose.connect("mongodb+srv://akash:akash1234@cluster0.4ayge.mongodb.net/bookmytaxi?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+mongoose.connect("mongodb://localhost:27017/hardcipher", { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
     console.log("database connected successfully");
 }).catch(err => {
     if (err) console.log(err);
@@ -24,23 +24,23 @@ io.on('connection', (socket) => {
     socket.on('tamboladisconnect', () => {
         console.log("disconned is fired ")
     });
-    socket.on('tambolamessage', (message) => {
-
-    })
     socket.on('getusers', async (roomid) => {
-        const allusers = await tambolacontroller().getusers(roomid);
-        console.log("allusers is ", allusers);
-        socket.emit('getusers', allusers)
-    })
-
-
-    socket.on('tambolajoinroom', async (userdata) => {
         try {
-
+            const allusers = await tambolacontroller().getusers(roomid);
+            socket.emit('resgetusers', {allusers})
+        }
+        catch (err) {
+            if (err) console.log(err);
+        }
+    })
+    socket.once('tambolajoinroom', async (userdata) => {
+        try {
             const res = await tambolacontroller().joinroom(socket.id, userdata);
-            console.log("userdata is ", userdata, "   response from fucntion ", res);
             socket.join(res.roomid);
-            socket.emit("tambolajoinroom", res);
+            socket.emit("restambolajoinroom", res);
+            const allusers = await tambolacontroller().getusers(userdata.roomid);
+            console.log("thise is res of the join ",res)
+            socket.to(res.roomid).emit('resgetusers',{ allusers, name: userdata.name});
         }
         catch (err) {
             if (err) console.log(err);
@@ -48,22 +48,21 @@ io.on('connection', (socket) => {
     })
 
 
-    socket.on('tambolacreateroom', async (name, roomtype, roomamount) => {
+    socket.once('tambolacreateroom', async (name, roomtype, roomamount) => {
         try {
             console.log("create roomis fired ");
             const roomadmin = await tambolacontroller().createroom(socket.id, name, roomtype, roomamount);
             socket.join(roomadmin.roomid);
-            socket.emit("tambolacreateroom", roomadmin);
+            socket.emit("restambolacreateroom", roomadmin);
         }
         catch (err) {
             if (err) console.log(err);
         }
 
     })
-    socket.on("tambolaticket", async (roomid, name) => {
-        const ticket = tambola.generateTicket();
-        console.log(ticket);
-        socket.emit("ticket", ticket)
+    socket.on("tambolaticket", async (userdata) => {
+      const userticket = await tambolacontroller().getuserticket(userdata.roomid, userdata.name);
+        socket.emit("resticket", userticket)
 
     })
     socket.on('tambolagetdraw', async (roomid, name) => {

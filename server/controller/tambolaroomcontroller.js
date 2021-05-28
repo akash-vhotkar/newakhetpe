@@ -8,6 +8,20 @@ const Tambolaroom = require('../model/Tambolaroom');
 const tambolafun = () => {
     return {
         // getusers of the room
+        async getuserticket(roomid, name){
+            try{
+                const user = await tambolauser.findOne({roomid: roomid, name: name});
+                return {err: 0, data:user.ticket[0]}
+
+            }
+            catch(err){
+                if(err) {
+                    console.log(err);
+                    return  {err:1 ,msg:"Internal server error"}
+                }
+            }
+
+        },
         async getusers(roomid) {
             try {
                 const roomusers = await tambolauser.find({ roomid: roomid });
@@ -48,12 +62,10 @@ const tambolafun = () => {
             try {
                 const user = await tambolauser.create(roomadmin);
                 const room = await tambolaroommodel.create(newroom);
-                return { err: 0, message: "Room created successfully", data: user, roomid: roomid };
-
-
+                return { err: 0, message: `Welcome ${name}`, data: user, roomid: roomid };
             } catch (err) {
                 if (err) console.log(err);
-                return { err: 1, message: "Internal server error " };
+                return { err: 2, message: "Internal server error " };
             }
 
 
@@ -61,7 +73,7 @@ const tambolafun = () => {
         },// name roomid
         async joinroom(socketid, userdata) {
             try {
-                console.log("join room is fired ", socketid);
+                console.log("controller join room is fired   ");
                 const roomdata = await tambolaroommodel.find({ roomid: userdata.roomid });
                 const roomtype = roomdata[0].roomtype;
                 const roomamount = roomdata[0].roomamount;
@@ -79,12 +91,14 @@ const tambolafun = () => {
                             useramount: roomamount
                         }
                         const user = await tambolauser.create(newuser);
-                        return { err: 1, message: " Room is full ", data: user, roomid: userdata.roomid };
+                        console.log("controllerr executed");
+
+                        return { err: 0, message: ` welcome  ${user.name} `, data: user, roomid: userdata.roomid };
                     }
                     else {
 
-                        s
-                        return { err: 0, message: "Room jpined successfully" }
+                        
+                        return { err: 1, message: "Room is full" }
                     }
                 } catch (err) {
                     if (err) console.log(err);
@@ -93,7 +107,7 @@ const tambolafun = () => {
 
             } catch (err) {
                 if (err) console.log(err);
-                return { err: 1, message: "Internal server error" }
+                return { err: 2, message: "Internal server error" }
             }
         }
     }

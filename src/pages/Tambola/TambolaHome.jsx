@@ -2,7 +2,7 @@ import { useState } from 'react';
 import io from 'socket.io-client';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { SocketContext, socket } from './socketconfig';
+import {  socket } from './socketconfig';
 import Room from './Tambolaroom';
 import Tambolaroom from './Tambolaroom'
 import { BrowserRouter as Router, Route, Link, Switch, Redirect ,useRouteMatch, useHistory} from 'react-router-dom'
@@ -18,30 +18,47 @@ const TambolaHome = () => {
     const [roomamount , setroomamount] = useState('');
     const [name ,setname]= useState('');
     console.log(roomid);
-    socket.on('connect', () => {
+    socket.once('connect', () => {
         console.log("connected to server");
     })
-    socket.on("tambolajoinroom", (obj) => {
-        history.push(`/tambola/${obj.data.roomid}`);
-    })
     
-    socket.on("tambolacreateroom", (obj) => {
-        
-        history.push(`/tambola/${obj.data.roomid}`);
-
-    })
-    socket.on("tambolamessage", (obj) => {
+    socket.once("tambolamessage", (obj) => {
         setmessage(obj.message)
         toast(obj.message)
     })
     function createroom(e) {
         e.preventDefault() 
       socket.emit("tambolacreateroom", name,roomtype, roomamount );
+      socket.once("restambolacreateroom", (obj) => {
+          if(obj.err== 0){
+            toast(obj.message);
+            history.push(`/tambola/${obj.data.roomid}/${obj.data.name}`);
+          }
+          else{
+              toast(obj.message);
+          }
+        
+
+    })
+    
      
     }
     function joinroom(e) {
         e.preventDefault() 
+        console.log("forntend join requst is made ");
         socket.emit("tambolajoinroom",{name, roomid});
+        socket.once("restambolajoinroom", (obj) => {
+            console.log("join room accepted   ",obj);
+            if(obj.err==0){
+            history.push(`/tambola/${obj.data.roomid}/${obj.data.name}`);
+            toast(obj.message);
+            }
+            else{
+                toast(obj.message);
+            }
+
+        })
+        
     }
     function playonline() {
         socket.emit("tambolaplayonline")
