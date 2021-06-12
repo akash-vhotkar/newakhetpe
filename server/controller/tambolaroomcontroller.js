@@ -50,8 +50,10 @@ const tambolafun = () => {
                 ticket: ticket,
                 balanceticket: ticket,
                 roomid: roomid,
-                useramount: roomamount
+                useramount: roomamount,
+                draw: draw
             }
+            
             const newroom = {
                 roomid: roomid,
                 roomtype: roomtype,
@@ -59,6 +61,7 @@ const tambolafun = () => {
                 roombalancedraw: draw,
                 roomadmin: name
             }
+
             try {
                 const user = await tambolauser.create(roomadmin);
                 const room = await tambolaroommodel.create(newroom);
@@ -88,7 +91,8 @@ const tambolafun = () => {
                             ticket: ticket,
                             usertype: "Player",
                             balanceticket: ticket,
-                            useramount: roomamount
+                            useramount: roomamount,
+                            draw: roomdata[0].roombalancedraw
                         }
                         const user = await tambolauser.create(newuser);
                         console.log("controllerr executed");

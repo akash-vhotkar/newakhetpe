@@ -24,6 +24,9 @@ io.on('connection', (socket) => {
     socket.on('tamboladisconnect', () => {
         console.log("disconned is fired ")
     });
+    socket.on("tambolamessage", (messagedata)=>{
+        socket.to(messagedata.roomid).emit("tambolamessage",{message:messagedata.message})
+        })
     socket.on('getusers', async (roomid) => {
         try {
             const allusers = await tambolacontroller().getusers(roomid);
@@ -65,9 +68,9 @@ io.on('connection', (socket) => {
         socket.emit("resticket", userticket)
 
     })
-    socket.on('tambolagetdraw', async (roomid, name) => {
+    socket.on('tambolastartgame', async (roomid) => {
         const draw = tambola.getDrawSequence();
-        socket.emit("draw", draw)
+        socket.to(roomid).emit("tambolastartgameres", draw)
     })
 
 

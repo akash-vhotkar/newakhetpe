@@ -4,15 +4,22 @@ import {  socket } from './socketconfig';
 import "./TambolaRoom.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {useSelector} from 'react-redux'
+
 const Room = () => {
   toast.configure();
+
+  // all selecrots 
+  const user = useSelector(state=> state.user);
+  console.log("user inside the room data ",user);
     const value = "Generated Number";
     const [randNum , setRandNum] = useState(value);
     const [users , setusers] = useState([]);
     const {roomid, name}  = useParams();
     const [CardData, setcard ] = useState([]);
     const [randomno, setrandomno] = useState(0);
-    
+    const [isgamestart , setgamestart ] = useState(false);
+    const div_class = isgamestart ? "changebackgr":"";
   useEffect(()=>{
     socket.emit("getusers",roomid);
    
@@ -20,7 +27,10 @@ const Room = () => {
       setusers(obj.allusers.data);
     
   })
+
+
   socket.emit("tambolaticket", {roomid, name});
+  
   socket.on("randomno",(obj)=>{
     if(obj.err==0){
       toast(obj.message);
@@ -31,9 +41,10 @@ const Room = () => {
     }
   })
 
+  
   socket.on("resticket", (obj)=>{
     if(obj.err==0){
-      console.log(obj);
+      
       setcard(obj.data);
       toast(obj.message)
 
@@ -61,12 +72,30 @@ const Room = () => {
       76,1,10,24,19,64,85,7,74,2,16,63,88,23,57
       ,87,81,82,20,75
     ];
+    socket.once("tambolamessage", (obj)=>{
+      toast(obj.message);
+    })
+
+    function startgame(){
+      const messagedata = {roomid: user.roomid, message:"Admin started game"}
+      socket.emit("tambolamessage",messagedata);
+
+      // socket.emit("tambolastartgame", user.roomid);
+      // console.log("the tambola uset havinf the draw is ", user.draw);
+      // socket.on("tambolastartgameres",(draw)=>{
+      //   console.log("the game started called and draw is ", draw);
+      //   toast("the game is started")
+      // })
+      
+    }
 
     return (
       <>
         <div className="container">
           <div className="row">
             <div className="col-lg-4 col-md-6 col-sm-8 col-12 mx-auto">
+              
+              {user.usertype== "Admin" ? <button className="btn btn-primary" onClick={ startgame}>Start the game </button> : <h1>Admin not started game yet</h1> }
               { users.map((user)=> <div key={user}>{user}</div> )}
               {/* <h1>{users}</h1> */}
               <h1 className="room-id">Room Id : {roomid}</h1>
@@ -76,18 +105,27 @@ const Room = () => {
                 <Table body={CardData} bgcolor={randNum}/>
               </div>
               <ul>
-                <li>Jaldi 5</li>
-                <li>Corners</li>
-                <li>Row First</li>
-                <li>Row Second</li>
-                <li>Row Third</li>
-                <li>Full Housie</li>
+                <li><button className="btn btn-primary mt-2">Jaldi 5</button>
+                </li>
+                <li><button className="btn btn-primary mt-2">Corners</button>
+                </li>
+                <li> <button className="btn btn-primary mt-2">Row First</button>
+               </li>
+                <li> <button className="btn btn-primary mt-2">Row second</button>
+               </li>
+                <li> <button className="btn btn-primary mt-2">Row Third</button>
+               </li>
+               <li> <button className="btn btn-primary mt-2">Full Housie</button></li>
+                
               </ul>
             </div>
           </div>
         </div>
       </>
     );
+}
+function handelclickno(e){
+
 }
 
 const Table = (props) => {
@@ -102,8 +140,8 @@ const Table = (props) => {
 
 const TableRow = (props) => {
     return (
-      <tr>
-          {props.row.map((val,index) => <td className={props.bgColor==val?"SelectedCell":""}>{val}</td>)}
+      <tr style={{"width":"10000px"}}>
+          {props.row.map((val,index) => <td key={index} style={{ color:"green", background:"yellow" ,"width":"100px", "height":"100px","font-size":"30px", border:"2px solid black"}} onClick={handelclickno(this)}  className={props.bgColor==val?"SelectedCell div_class":" div_class"}>{val}</td>)}
       </tr>
     );
 }

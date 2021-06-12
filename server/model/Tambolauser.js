@@ -21,6 +21,10 @@ module.exports = mongoose.model("tambolauser",{
         type: Array,
         required: true
     },
+    draw:{
+        type:Array,
+        required : true
+    },
     roomid: {
         type:String,
         required: true
