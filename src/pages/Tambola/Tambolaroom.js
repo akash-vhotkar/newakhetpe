@@ -31,15 +31,14 @@ const Room = () => {
 
   socket.emit("tambolaticket", {roomid, name});
   
-  socket.on("randomno",(obj)=>{
-    if(obj.err==0){
-      toast(obj.message);
-
-    }
-    else{
-      toast("Internal server error")
-    }
-  })
+  // socket.on("randomno",(obj)=>{
+  //   if(obj.err==0){
+  //     toast(obj.message);
+  //   }
+  //   else{
+  //     toast("Internal server error")
+  //   }
+  // })
 
   
   socket.on("resticket", (obj)=>{
@@ -75,11 +74,30 @@ const Room = () => {
     socket.once("tambolamessage", (obj)=>{
       toast(obj.message);
     })
+    socket.on("randomnores",(obj)=>{
+      console.log("res ponse is recive from server ", obj);
+      setrandomno(obj.no);
+      
+
+    })
 
     function startgame(){
-      const messagedata = {roomid: user.roomid, message:"Admin started game"}
-      socket.emit("tambolamessage",messagedata);
+      const draw =  user.draw;
+      let i =0;
 
+      setInterval(()=>{
+        if(i< draw.length){
+          console.log("inside the set interval data is ", i, " and  data at the index is ",draw[i], " and roomid ", user.roomid);
+          socket.emit("getrandomno",{ no:  draw[i], roomid : user.roomid } );
+          setrandomno(draw[i]);
+        }
+        else if(i ==  draw.length){
+          toast(" game  is over ")
+        }
+        i++;
+
+      }, 5000)
+  
       // socket.emit("tambolastartgame", user.roomid);
       // console.log("the tambola uset havinf the draw is ", user.draw);
       // socket.on("tambolastartgameres",(draw)=>{
@@ -94,7 +112,7 @@ const Room = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-4 col-md-6 col-sm-8 col-12 mx-auto">
-              
+              <h1> Random no is { randomno}</h1>
               {user.usertype== "Admin" ? <button className="btn btn-primary" onClick={ startgame}>Start the game </button> : <h1>Admin not started game yet</h1> }
               { users.map((user)=> <div key={user}>{user}</div> )}
               {/* <h1>{users}</h1> */}
@@ -113,10 +131,10 @@ const Room = () => {
                </li>
                 <li> <button className="btn btn-primary mt-2">Row second</button>
                </li>
-                <li> <button className="btn btn-primary mt-2">Row Third</button>
+                {/* <li> <button className="btn btn-primary mt-2">Row Third</button>
                </li>
                <li> <button className="btn btn-primary mt-2">Full Housie</button></li>
-                
+                 */}
               </ul>
             </div>
           </div>

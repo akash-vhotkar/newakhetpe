@@ -36,6 +36,10 @@ io.on('connection', (socket) => {
             if (err) console.log(err);
         }
     })
+    socket.on('getrandomno', async(data)=>{
+        console.log("the data inside the get ranomno method is ", data);
+        socket.to(data.roomid).emit("randomnores" , {no : data.no});
+    })
     socket.once('tambolajoinroom', async (userdata) => {
         try {
             const res = await tambolacontroller().joinroom(socket.id, userdata);
