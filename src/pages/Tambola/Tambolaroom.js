@@ -13,6 +13,7 @@ const Room = () => {
   const user = useSelector(state=> state.user);
   console.log("user inside the room data ",user);
     const value = "Generated Number";
+    const [bgcolor , setbgcolor ] = useState("yellow");
     const [randNum , setRandNum] = useState(value);
     const [users , setusers] = useState([]);
     const {roomid, name}  = useParams();
@@ -113,14 +114,14 @@ const Room = () => {
           <div className="row">
             <div className="col-lg-4 col-md-6 col-sm-8 col-12 mx-auto">
               <h1> Random no is { randomno}</h1>
-              {user.usertype== "Admin" ? <button className="btn btn-primary" onClick={ startgame}>Start the game </button> : <h1>Admin not started game yet</h1> }
+              {user.usertype== "Admin" ? <button className="btn btn-primary" onClick={ startgame}>Start the game </button> : <h1></h1>}
               { users.map((user)=> <div key={user}>{user}</div> )}
               {/* <h1>{users}</h1> */}
               <h1 className="room-id">Room Id : {roomid}</h1>
               <div className="gernerate-number-btn" onClick={clickEvent}>Gernerate Number</div>
               <div className="gernerated-number">{randNum}</div>
               <div >
-                <Table body={CardData} bgcolor={randNum}/>
+                <Table body={CardData} bgcolor={randNum} bgcolr={bgcolor}/>
               </div>
               <ul>
                 <li><button className="btn btn-primary mt-2">Jaldi 5</button>
@@ -143,6 +144,7 @@ const Room = () => {
     );
 }
 function handelclickno(e){
+  console.log("after click  no  data is ", e.target.innerHTML);
 
 }
 
@@ -150,7 +152,7 @@ const Table = (props) => {
   return (
     <table className="text-warning mx-auto mb-4">
         <tbody>
-            {props.body.map((row,index) => <TableRow key={index} row={row}  bgColor={props.bgcolor} />)}
+            {props.body.map((row,index) => <TableRow key={index} row={row}  bgcolr={props.bgcolr} bgColor={props.bgcolor} />)}
         </tbody>
     </table>
 );
@@ -159,7 +161,7 @@ const Table = (props) => {
 const TableRow = (props) => {
     return (
       <tr style={{"width":"10000px"}}>
-          {props.row.map((val,index) => <td key={index} style={{ color:"green", background:"yellow" ,"width":"100px", "height":"100px","font-size":"30px", border:"2px solid black"}} onClick={handelclickno(this)}  className={props.bgColor==val?"SelectedCell div_class":" div_class"}>{val}</td>)}
+          {props.row.map((val,index) => <td key={index} onClick={ (e)=> handelclickno(e)} style={{ color:"green", backgroundColor : props.bgcolr  ,"width":"100px", "height":"100px","font-size":"30px", border:"2px solid black"}} onClick={handelclickno(this)}  className={props.bgColor==val?"SelectedCell div_class":" div_class"}>{val}</td>)}
       </tr>
     );
 }
