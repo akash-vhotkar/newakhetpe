@@ -114,27 +114,27 @@ const Room = () => {
             <div className="col-lg-4 col-md-6 col-sm-8 col-12 mx-auto">
               <h1> Random no is { randomno}</h1>
               {user.usertype== "Admin" ? <button className="btn btn-primary" onClick={ startgame}>Start the game </button> : <h1>Admin not started game yet</h1> }
-              { users.map((user)=> <div key={user}>{user}</div> )}
+              { users.map((user)=> <div key={user} className='tmuser'>{user}</div> )}
               {/* <h1>{users}</h1> */}
-              <h1 className="room-id">Room Id : {roomid}</h1>
+              <h1 className="room-id tmid">Room Id : {roomid}</h1>
               <div className="gernerate-number-btn" onClick={clickEvent}>Gernerate Number</div>
               <div className="gernerated-number">{randNum}</div>
               <div >
                 <Table body={CardData} bgcolor={randNum}/>
               </div>
-              <ul>
-                <li><button className="btn btn-primary mt-2">Jaldi 5</button>
+              <ul className='tamolaul'>
+                <li><button className="btn btn-primary mt-2 tmbt">Jaldi 5</button>
                 </li>
-                <li><button className="btn btn-primary mt-2">Corners</button>
+                <li><button className="btn btn-primary mt-2 tmbt">Corners</button>
                 </li>
-                <li> <button className="btn btn-primary mt-2">Row First</button>
+                <li> <button className="btn btn-primary mt-2 tmbt">Row First</button>
                </li>
-                <li> <button className="btn btn-primary mt-2">Row second</button>
+                <li> <button className="btn btn-primary mt-2 tmbt">Row second</button>
                </li>
-                {/* <li> <button className="btn btn-primary mt-2">Row Third</button>
+                <li> <button className="btn btn-primary mt-2 tmbt">Row Third</button>
                </li>
-               <li> <button className="btn btn-primary mt-2">Full Housie</button></li>
-                 */}
+               <li> <button className="btn btn-primary mt-2 tmbt">Full Housie</button></li>
+                
               </ul>
             </div>
           </div>
