@@ -159,7 +159,7 @@ const Table = (props) => {
 const TableRow = (props) => {
     return (
       <tr style={{"width":"10000px"}}>
-          {props.row.map((val,index) => <td key={index} style={{ color:"green", background:"yellow" ,"width":"100px", "height":"100px","font-size":"30px", border:"2px solid black"}} onClick={handelclickno(this)}  className={props.bgColor==val?"SelectedCell div_class":" div_class"}>{val}</td>)}
+          {props.row.map((val,index) => <td key={index} style={{ color:"red", background:"yellow" ,"width":"50px", "height":"50px","font-size":"30px", border:"2px solid black"}} onClick={handelclickno(this)}  className={props.bgColor==val?"SelectedCell div_class":" div_class"}>{val}</td>)}
       </tr>
     );
 }
