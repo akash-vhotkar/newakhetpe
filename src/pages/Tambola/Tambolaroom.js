@@ -1,166 +1,230 @@
-import React, {useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom'
-import {  socket } from './socketconfig';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom'
+import { socket } from './socketconfig';
 import "./TambolaRoom.css";
+import {useDispatch} from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {useSelector} from 'react-redux'
+import { useSelector } from 'react-redux'
 
 const Room = () => {
   toast.configure();
+// all selecrots 
+  const user = useSelector(state => state.user);
+  const [donenum , setdonenum ] = useState([]);
+  const [users, setusers] = useState([]);
+  const { roomid, name } = useParams();
+  const [CardData, setcard] = useState([]);
+  const [randomno, setrandomno] = useState(0);
+  const [isgamestart, setgamestart] = useState(false);
 
-  // all selecrots 
-  const user = useSelector(state=> state.user);
-  console.log("user inside the room data ",user);
-    const value = "Generated Number";
-    const [bgcolor , setbgcolor ] = useState("yellow");
-    const [randNum , setRandNum] = useState(value);
-    const [users , setusers] = useState([]);
-    const {roomid, name}  = useParams();
-    const [CardData, setcard ] = useState([]);
-    const [randomno, setrandomno] = useState(0);
-    const [isgamestart , setgamestart ] = useState(false);
-    const div_class = isgamestart ? "changebackgr":"";
-  useEffect(()=>{
-    socket.emit("getusers",roomid);
-   
-    socket.on("resgetusers",(obj)=>{
+
+  useEffect(() => {
+    socket.emit("getusers", roomid);
+    setdonenum(arr=> [...arr, 0]);
+
+    socket.on("resgetusers", (obj) => {
       setusers(obj.allusers.data);
+
+    })
+   
+
+    socket.emit("tambolaticket", { roomid, name });
+
+
+
+    socket.on("resticket", (obj) => {
+      if (obj.err == 0) {
+        setcard(obj.data);
+        toast(obj.message)
+        
+
+      }
+      else {
+        toast(obj.message);
+      }
+    })
+
+  }, [])
+
+
+  function handelfirstrow(){
+    let flag = true;
+   for(let i =0;i< CardData[0].length;i++){
+     if(donenum.includes(CardData[0][i])== false ) {
+       flag = false;
+       break;
+     }
     
-  })
-
-
-  socket.emit("tambolaticket", {roomid, name});
+   }
+   if(flag)  {
+     socket.emit("tambolamessage",{message:`${user.name} corner claim sussccssfuly`, roomid: user.roomid})
+   toast("claim done")
+    }else toast("invalid claim")
   
-  // socket.on("randomno",(obj)=>{
-  //   if(obj.err==0){
-  //     toast(obj.message);
-  //   }
-  //   else{
-  //     toast("Internal server error")
-  //   }
-  // })
+  }
 
-  
-  socket.on("resticket", (obj)=>{
-    if(obj.err==0){
+  function handelsecondrow(){
+    let flag = true;
+    for(let i =0;i< CardData[1].length;i++){
+      if(donenum.includes(CardData[1][i])== false ) {
+        flag = false;
+        break; 
+      }
       
-      setcard(obj.data);
-      toast(obj.message)
-
     }
+    if(flag) {
+      socket.emit("tambolamessage",{message:`${user.name} corner claim sussccssfuly`, roomid:user.roomid})
+      toast("claim done")
+
+    } 
     else{
-      toast(obj.message);
+      toast("invalid claim")
     }
+   }
+   function handelthirdrow(){
+     let flag = true;
+    for(let i =0;i< CardData[2].length;i++){
+      if(donenum.includes(CardData[2][i])== false ) {
+        flag = false;
+        break; 
+      }
+      
+    }
+    if(flag){
+      socket.emit("tambolamessage",{message:`${user.name} corner claim sussccssfuly`, roomid: user.roomid})
+      toast("claim done")
+
+    } 
+    else toast("invalid claim")
+
+   }
+ 
+
+
+
+
+
+
+
+  socket.once("tambolamessage", (obj) => {
+    toast(obj.message);
   })
-  
-  },[])
+  socket.on("randomnores", (obj) => {
+    setrandomno(obj.no);
+  })
 
-
-   
+  function startgame() {
+    const draw = user.draw;
     let i = 0;
-    const clickEvent = () => {
-      setRandNum(RandNum[i++]);
+
+    setInterval(() => {
+      if (i < draw.length) {
+        socket.emit("getrandomno", { no: draw[i], roomid: user.roomid });
+        setrandomno(draw[i]);
+      }
+      else if (i == draw.length) {
+        toast(" game  is over ")
+      }
+      i++;
+
+    }, 3000)
+
+  }
+  function handelcorners(){
+    for(let i =0;i<CardData.length;i++){
+      if(donenum.includes(CardData[i][0])== false || donenum.includes(CardData[i][8])== false){
+        toast("invalid claim")
+        return;
+      }
     }
-
-   
-    const RandNum =[72,65,47,89,42,4,61,84,36,22,37,18,9,27,
-      12,71,46,15,30,55,17,3,56,25,68,80,43,26,
-      50,39,53,38,60,31,28,11,8,62,49,79,51,35,
-      14,67,45,41,40,5,44,34,73,32,86,69,70,48,
-      21,33,83,13,54,77,78,90,29,6,52,59,58,66,
-      76,1,10,24,19,64,85,7,74,2,16,63,88,23,57
-      ,87,81,82,20,75
-    ];
-    socket.once("tambolamessage", (obj)=>{
-      toast(obj.message);
-    })
-    socket.on("randomnores",(obj)=>{
-      console.log("res ponse is recive from server ", obj);
-      setrandomno(obj.no);
-      
-
-    })
-
-    function startgame(){
-      const draw =  user.draw;
-      let i =0;
-
-      setInterval(()=>{
-        if(i< draw.length){
-          console.log("inside the set interval data is ", i, " and  data at the index is ",draw[i], " and roomid ", user.roomid);
-          socket.emit("getrandomno",{ no:  draw[i], roomid : user.roomid } );
-          setrandomno(draw[i]);
-        }
-        else if(i ==  draw.length){
-          toast(" game  is over ")
-        }
-        i++;
-
-      }, 5000)
+    toast("claim done")
+    socket.emit("tambolamessage",{message:`${user.name} corner claim sussccssfuly`, roomid:user.roomid})
+  }
   
-      // socket.emit("tambolastartgame", user.roomid);
-      // console.log("the tambola uset havinf the draw is ", user.draw);
-      // socket.on("tambolastartgameres",(draw)=>{
-      //   console.log("the game started called and draw is ", draw);
-      //   toast("the game is started")
-      // })
-      
+function handelfullhouse(){
+  let flag = true;
+  for(let i =0;i< CardData.length;i++){
+    for(let j =0 ; j< CardData[i].length;j++){
+      if(donenum.includes(CardData[i][j])== false) {
+        flag= false;
+        break;
+      }
     }
+  }
+  if(flag){
+    socket.emit("tambolamessage",{message:`${user.name} corner claim sussccssfuly`, roomid: user.roomid})
+    toast("claim done")
 
-    return (
-      <>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-4 col-md-6 col-sm-8 col-12 mx-auto">
-              <h1> Random no is { randomno}</h1>
-              {user.usertype== "Admin" ? <button className="btn btn-primary" onClick={ startgame}>Start the game </button> : <h1></h1>}
-              { users.map((user)=> <div key={user}>{user}</div> )}
-              {/* <h1>{users}</h1> */}
-              <h1 className="room-id">Room Id : {roomid}</h1>
-              <div className="gernerate-number-btn" onClick={clickEvent}>Gernerate Number</div>
-              <div className="gernerated-number">{randNum}</div>
-              <div >
-                <Table body={CardData} bgcolor={randNum} bgcolr={bgcolor}/>
+  } 
+  else toast("invalid claim")
+}
+
+  function handelnoclick(e) {
+   
+    if (parseInt(e.target.innerHTML) === randomno) {
+      e.target.style.background = "red";
+      e.target.style.color = "green";
+      
+      // for(let i =0;i< newcard.length;i++){
+      //   if(newcard[i].includes(randomno)){
+      //     const index = newcard[i].indexOf(randomno);
+      //     newcard[i][index] = -1;
+          
+      //   }
+      // }
+      setdonenum(oldarr=> [...oldarr,randomno]);
+      
+
+    }
+    else {
+      toast("please select right number")
+    }
+  }
+
+  return (
+    <>
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-4 col-md-6 col-sm-8 col-12 mx-auto">
+            <h1> Random no is {randomno}</h1>
+            {user.usertype == "Admin" ? <button className="btn btn-primary" onClick={startgame}>Start the game </button> : <h1></h1>}
+            {(user.usertype == "Player") ? (user.randNum === 0 ? <h1>Admin not started game yet</h1> : <h1>Enjoy tambola</h1>) : <h1></h1>}
+            {users.map((user) => <div key={user} className='tmuser'>{user}</div>)}
+
+            <h1 className="room-id tmid">Room Id : {roomid}</h1>
+            <div >
+              <div className="text-warning mx-auto mb-4">
+                <div>
+                  {CardData.map(function(row, index) {
+                    return (
+                    
+<div key={index} style={{ "width": "10000px", "display": "flex" }}>
+                     { row.map((val, index) => val == 0 ? <div key={index} style={{ color: "red", background: "yellow", width: "60px", "height": "60px", "font-size": "30px", border: "2px solid black" }}></div> : <div key={index} onClick={(e) => handelnoclick(e)} style={{ color: "red", background: "yellow", width: "60px", "height": "60px", "font-size": "30px", border: "2px solid black" }}   >{val}</div>)
+}</div>)
+                  })}
+                </div>
               </div>
-              <ul>
-                <li><button className="btn btn-primary mt-2">Jaldi 5</button>
-                </li>
-                <li><button className="btn btn-primary mt-2">Corners</button>
-                </li>
-                <li> <button className="btn btn-primary mt-2">Row First</button>
-               </li>
-                <li> <button className="btn btn-primary mt-2">Row second</button>
-               </li>
-                {/* <li> <button className="btn btn-primary mt-2">Row Third</button>
-               </li>
-               <li> <button className="btn btn-primary mt-2">Full Housie</button></li>
-                 */}
-              </ul>
             </div>
+            <ul className='tamolaul'>
+              <li><button className="btn btn-primary mt-2 tmbt" onClick={handelcorners}>Corners</button>
+              </li>
+              <li> <button className="btn btn-primary mt-2 tmbt" onClick={handelfirstrow}>Row First</button>
+              </li>
+              <li> <button className="btn btn-primary mt-2 tmbt" onClick={handelsecondrow}>Row second</button>
+              </li>
+              <li> <button className="btn btn-primary mt-2 tmbt" onClick={handelthirdrow}>Row Third</button>
+              </li>
+              <li> <button className="btn btn-primary mt-2 tmbt" onClick={handelfullhouse}>Full Housie</button></li>
+
+            </ul>
           </div>
         </div>
-      </>
-    );
+      </div>
+    </>
+  );
 }
 
 
-const Table = (props) => {
-  return (
-    <table className="text-warning mx-auto mb-4">
-        <tbody>
-            {props.body.map((row,index) => <TableRow key={index} row={row}  bgcolr={props.bgcolr} bgColor={props.bgcolor} />)}
-        </tbody>
-    </table>
-);
-}
-
-const TableRow = (props) => {
-    return (
-      <tr style={{"width":"10000px"}}>
-          {props.row.map((val,index) => <td key={index}  style={{ color:"green", backgroundColor : props.bgcolr  ,"width":"100px", "height":"100px","font-size":"30px", border:"2px solid black"}}   className={props.bgColor==val?"SelectedCell div_class":" div_class"}>{val}</td>)}
-      </tr>
-    );
-}
 
 export default Room;

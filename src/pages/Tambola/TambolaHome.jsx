@@ -50,10 +50,8 @@ const TambolaHome = () => {
     }
     function joinroom(e) {
         e.preventDefault() 
-        console.log("forntend join requst is made ");
         socket.emit("tambolajoinroom",{name, roomid});
         socket.once("restambolajoinroom", (obj) => {
-            console.log("join room accepted   ",obj);
             if(obj.err==0){
                 dispatch({type:"SETUSER", data: obj.data})
             history.push(`/tambola/${obj.data.roomid}/${obj.data.name}`);

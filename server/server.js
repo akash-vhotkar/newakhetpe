@@ -24,7 +24,7 @@ io.on('connection', (socket) => {
     socket.on('tamboladisconnect', () => {
         console.log("disconned is fired ")
     });
-    socket.on("tambolamessage", (messagedata)=>{
+    socket.once("tambolamessage", (messagedata)=>{
         socket.to(messagedata.roomid).emit("tambolamessage",{message:messagedata.message})
         })
     socket.on('getusers', async (roomid) => {
