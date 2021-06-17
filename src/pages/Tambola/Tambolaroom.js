@@ -143,10 +143,7 @@ const Room = () => {
       </>
     );
 }
-function handelclickno(e){
-  console.log("after click  no  data is ", e.target.innerHTML);
 
-}
 
 const Table = (props) => {
   return (
@@ -161,7 +158,7 @@ const Table = (props) => {
 const TableRow = (props) => {
     return (
       <tr style={{"width":"10000px"}}>
-          {props.row.map((val,index) => <td key={index} onClick={ (e)=> handelclickno(e)} style={{ color:"green", backgroundColor : props.bgcolr  ,"width":"100px", "height":"100px","font-size":"30px", border:"2px solid black"}} onClick={handelclickno(this)}  className={props.bgColor==val?"SelectedCell div_class":" div_class"}>{val}</td>)}
+          {props.row.map((val,index) => <td key={index}  style={{ color:"green", backgroundColor : props.bgcolr  ,"width":"100px", "height":"100px","font-size":"30px", border:"2px solid black"}}   className={props.bgColor==val?"SelectedCell div_class":" div_class"}>{val}</td>)}
       </tr>
     );
 }
